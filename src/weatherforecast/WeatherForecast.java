@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 import seward_weather.forecast.*;
 
 
-import static seward_weather.forecast.Seward_WeatherForecast.*;
+
 import seward_weather.forecast.WeatherReader;
 import static javafx.application.Application.launch;
 import static javafx.application.Application.launch;
@@ -124,6 +124,7 @@ public final class WeatherForecast extends Application {
             }
             else {
                 System.out.println("You can only answer with Y (YES) or N (NO).");
+                proxy = proxyTextField.getText();
             }
             }
             
@@ -135,13 +136,11 @@ public final class WeatherForecast extends Application {
                 public void run(){
                     GMapsReader addressReader = new GMapsReader(address, proxyOn);
                     WeatherReader wR=new WeatherReader(addressReader.getLocation(), proxyOn);
-                    printedForecast=wR.getMeteoBellissimo();
+                    String printedForecast=wR.getMeteoBellissimo();
                    
-                    //meteoBellissimo="CCiao";
                     Platform.runLater(new Runnable(){
                     @Override
                     public void run(){
-                    //Imposti il valore della grafica
                     meteo.setText(printedForecast);
                             }
                     });
