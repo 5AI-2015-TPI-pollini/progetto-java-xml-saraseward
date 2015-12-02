@@ -9,12 +9,12 @@ package seward_weather.forecast;
  *
  * @author Sara
  */
-public class MeteoBello {
+public class PrintForecast {
     private Double temperatureValue;
     private String humidity;
     private String clouds;
 
-    public MeteoBello(String temperatureValue, String humidity, String clouds) {
+    public PrintForecast(String temperatureValue, String humidity, String clouds) {
         this.temperatureValue = toCelsius(Double.parseDouble(temperatureValue));
         this.humidity = humidity;
         this.clouds = clouds;

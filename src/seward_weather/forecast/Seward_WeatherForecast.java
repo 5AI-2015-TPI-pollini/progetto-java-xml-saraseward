@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class Seward_WeatherForecast {
 
     
-    public static String meteoBellissimo;
+    public static String printedForecast;
     
     /**
      * @param args the command line arguments
@@ -26,14 +26,14 @@ public class Seward_WeatherForecast {
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
         try {
-            System.out.println("Benvenuto! Inserisci l'indirizzo (Via/Nome/Numero/Città o provincia):");
+            System.out.println("Welcome! Type your address here:");
             //Leggo input
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             String address = br.readLine();
             
             boolean proxyOn = false;
             boolean temp=false;
-            System.out.println("C'è un proxy? (S/N)");
+            System.out.println("Are you using a proxy? (Y/N)");
             //Leggo input           
             String answer = br.readLine();
             while (temp==false){
@@ -46,7 +46,7 @@ public class Seward_WeatherForecast {
                 temp=true;
             }
             else {
-                System.out.println("E' possibile rispondere solo con S o solo con N.");
+                System.out.println("You can only answer with Y (YES) or N (NO).");
             }
             }
             
@@ -55,8 +55,8 @@ public class Seward_WeatherForecast {
                 public void run(){*/
                     GMapsReader addressReader = new GMapsReader(address, proxyOn);
                     WeatherReader wR=new WeatherReader(addressReader.getLocation(), proxyOn);
-                    meteoBellissimo=wR.getMeteoBellissimo();
-                    System.out.println(meteoBellissimo);
+                    printedForecast=wR.getMeteoBellissimo();
+                    System.out.println(printedForecast);
                /* }
             }).start();*/
         } catch (IOException ex) {

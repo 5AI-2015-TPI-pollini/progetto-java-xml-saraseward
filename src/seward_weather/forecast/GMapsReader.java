@@ -42,7 +42,6 @@ public class GMapsReader {
         Connection c;
         try {
             c = new Connection(toFinalURL(address), proxyOn);
-             System.out.println("gmapsreader connessione sexy");
              interpreter(c.getConnection());
              printCoordinate();
         } catch (UnsupportedEncodingException ex) {
@@ -97,7 +96,6 @@ public class GMapsReader {
         String finalUrl=GEOCODE_URL;
         //Replace spaces with +
         finalUrl+=URLEncoder.encode(address, "UTF-8");
-//address.replace(" ", "+");
         return finalUrl;
     }
     

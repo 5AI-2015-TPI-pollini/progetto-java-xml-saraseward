@@ -23,6 +23,37 @@ import seward_weather.forecast.*;
 
 import static seward_weather.forecast.Seward_WeatherForecast.*;
 import seward_weather.forecast.WeatherReader;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
 /**
  *
  * @author Sara
@@ -47,24 +78,24 @@ public final class WeatherForecast extends Application {
         //title.setFont(Font.font("Calibri Light", FontWeight.EXTRA_LIGHT, 20));
         grid.add(title, 0, 0, 2, 1);
 
-        Label address = new Label("Address:");
-        grid.add(address, 0, 1);
+        Label lblAddress = new Label("Address:");
+        grid.add(lblAddress, 0, 1);
 
         TextField addressTextField = new TextField();
         grid.add(addressTextField, 1, 1);
         
         
-        Label proxyLbl = new Label("Proxy? (Y/N)");
-        grid.add(proxyLbl, 0, 2);
+        Label lblProxy = new Label("Proxy? (Y/N)");
+        grid.add(lblProxy, 0, 2);
 
         TextField proxyTextField = new TextField();
         grid.add(proxyTextField, 1, 2);
         
-        Button btnCalcola = new Button("Calcola");
-        HBox hbCalcola = new HBox(10);
-        hbCalcola.setAlignment(Pos.BOTTOM_LEFT);
-        hbCalcola.getChildren().add(btnCalcola);
-        grid.add(hbCalcola, 1, 3);
+        Button btnCalculate = new Button("Calculate");
+        HBox HBCalculate = new HBox(10);
+        HBCalculate.setAlignment(Pos.BOTTOM_LEFT);
+        HBCalculate.getChildren().add(btnCalculate);
+        grid.add(HBCalculate, 1, 3);
 
         /*Label result = new Label(" ");
         grid.add(result, 0, 2);*/
@@ -73,13 +104,15 @@ public final class WeatherForecast extends Application {
         meteo.setId("result");
         grid.add(meteo, 1, 4);
         
-        btnCalcola.setOnAction(new EventHandler<ActionEvent>() {
+        btnCalculate.setOnAction(new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent e) {   
             String address=addressTextField.getText();
             String proxy = proxyTextField.getText();
             boolean temp=false;
             boolean tempProxyOn=true;
+            
+            //This cycle only stops when the user types Y or N. Any other letter won't make the program do anything except wait.
             while (temp==false){
             if (proxy.equalsIgnoreCase("S")){
                 tempProxyOn=true;
@@ -94,6 +127,7 @@ public final class WeatherForecast extends Application {
             }
             }
             
+            //I need this variable because threads can't work with non-static variables.
             final boolean proxyOn=tempProxyOn;
             
             new Thread(new Runnable(){
@@ -101,14 +135,14 @@ public final class WeatherForecast extends Application {
                 public void run(){
                     GMapsReader addressReader = new GMapsReader(address, proxyOn);
                     WeatherReader wR=new WeatherReader(addressReader.getLocation(), proxyOn);
-                    meteoBellissimo=wR.getMeteoBellissimo();
+                    printedForecast=wR.getMeteoBellissimo();
                    
                     //meteoBellissimo="CCiao";
                     Platform.runLater(new Runnable(){
                     @Override
                     public void run(){
                     //Imposti il valore della grafica
-                    meteo.setText(meteoBellissimo);
+                    meteo.setText(printedForecast);
                             }
                     });
                 }

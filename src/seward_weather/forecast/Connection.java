@@ -41,21 +41,20 @@ public class Connection {
             output = new BufferedInputStream(ConnectionInput.getInputStream());
             
             if (proxyOn==true){
-                System.out.println("I will try to set up proxy.");
+                System.out.println("Setting up the proxy...");
                 //proxyOn=true;
                 setProxy();
                 connect();
             }
             return;
         } catch (MalformedURLException ex) {
-            System.out.println("There was a problem creating the connection. Sorry.");
+            System.out.println("Invalid URL.");
             output = null;
             exit(1);
             //Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
         } 
         catch (IOException ex) {
-                System.out.println("I can't connect to internet. Check your connection and try again.");
-                ex.printStackTrace();
+                System.out.println("Connection impossible. Check it.");
                 exit(1);
             }
         
@@ -68,7 +67,6 @@ public class Connection {
     private void setProxy(){
         readSettings();
         System.setProperty("useProxy", "true");
-        System.err.println("impostato");
         System.setProperty("http.proxyHost", proxyAddress);
         System.setProperty("http.proxyPort", proxyPort);
                 
@@ -95,10 +93,10 @@ public class Connection {
             authPassword = br.readLine();
             br.close();
         } catch (FileNotFoundException ex) {
-            System.out.println("Proxy configuration file is missing!"+"\n"+"Can't connect to Internet.");
+            System.out.println("Proxy configuration file is missing!");
             exit(1);
         } catch (IOException ex) {
-            System.out.println("I can't connect to internet. Check your connection and try again.");
+            System.out.println("Connection impossible. Check it.");
         }
     }
 }

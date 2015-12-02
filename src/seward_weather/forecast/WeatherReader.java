@@ -81,7 +81,7 @@ public class WeatherReader {
             XPathExpression currentClouds = xpath.compile(QUERY_CLOUDS);
             String tempClouds = (String) currentClouds.evaluate(doc, XPathConstants.STRING);
             
-            MeteoBello currentMeteo=new MeteoBello(tempValue, tempHumidity, tempClouds);
+            PrintForecast currentMeteo=new PrintForecast(tempValue, tempHumidity, tempClouds);
             
             
             this.setMeteoBellissimo(currentMeteo.toString());
