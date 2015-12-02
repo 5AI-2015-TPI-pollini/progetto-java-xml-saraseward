@@ -128,6 +128,7 @@ public final class WeatherForecast extends Application {
             }
             }
             
+            
             //I need this variable because threads can't work with non-static variables.
             final boolean proxyOn=tempProxyOn;
             

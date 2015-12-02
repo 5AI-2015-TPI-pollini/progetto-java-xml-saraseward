@@ -2,3 +2,5 @@ PROXY IP ADDRESS
 PORT
 USERID
 PASSWORD
+
+--Config your proxy--
