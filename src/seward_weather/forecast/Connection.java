@@ -23,12 +23,16 @@ public class Connection {
     private String proxyAddress, proxyPort, authUser, authPassword;
     private final Boolean proxyOn;
     
-    
+    /**
+     *
+     * @param url Contains the correct http address to reach the Google API.
+     * @param proxyOn Is a flag, if it's true we need to use a proxy to connect to the internet. 
+     */
     public Connection(String url, boolean proxyOn){
-        //setProxy();
+        
         this.url = url;
         this.proxyOn=proxyOn;
-        //readSettings();
+        
         connect();
     }
     
@@ -60,6 +64,10 @@ public class Connection {
         
     }
     
+    /**
+     *
+     * @return The variable "output" of type InputStream. It contains the InputStream from the ConnectionInput.
+     */
     public InputStream getConnection(){
         return output;
     }
